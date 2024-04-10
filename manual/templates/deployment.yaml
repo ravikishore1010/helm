@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  annotations:
+    changeCause: |
+      "changing to latest nginx version"
+  labels:
+    app: nginx
+spec:
+  replicas: {{ .Values.deployment.replicaCount }}
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: "nginx:{{ .Values.deployment.imageVersion }}""
+        ports:
+        - containerPort: 80
