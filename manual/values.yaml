@@ -1,5 +1,5 @@
 deployment:
   replicaCount: 2
   imageVersion: alpine 
-serviec:
+service:
   port: 80  
