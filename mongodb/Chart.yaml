@@ -1,0 +1,5 @@
+apiVersion: v2
+name: mychart-mongodb
+description: A Helm chart for deploying a sample application
+version: 2.0.0
+appVersion: "2.0.0"

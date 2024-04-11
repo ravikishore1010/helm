@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongodb
+  namespace: roboshop
+spec:
+  serviceName: "mongodb"
+  replicas: {{ .values.statefulset.replicaCount}}
+  selector:
+    matchLabels:
+      name: mongodb
+      tier: db
+  template:
+    metadata:
+      labels:
+        name: mongodb
+        tier: db
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: mongodb
+        image: "macharavikishore/mongodb::{{ .values.statefulset.imageVersion}}"
+         # or specify a pull policy according to your needs
+        ports:
+        - containerPort: 27017
+          name: mongodb
+        volumeMounts:
+        - name: mongodb-volume
+          mountPath: /data/db
+  volumeClaimTemplates:
+  - metadata:
+      name: mongodb-volume
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "ebs-sc" # update to match your StorageClass
+      resources:
+        requests:
+          storage: 1Gi
