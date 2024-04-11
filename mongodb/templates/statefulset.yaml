@@ -5,7 +5,7 @@ metadata:
   namespace: roboshop
 spec:
   serviceName: "mongodb"
-  replicas: {{ .values.statefulset.replicaCount }}
+  replicas: {{ .Values.statefulset.replicaCount }}
   selector:
     matchLabels:
       name: mongodb
