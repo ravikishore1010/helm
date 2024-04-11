@@ -5,7 +5,7 @@ metadata:
   namespace: roboshop
 spec:
   serviceName: "mongodb"
-  replicas: {{ .values.statefulset.replicaCount}}
+  replicas: {{ .values.statefulset.replicaCount }}
   selector:
     matchLabels:
       name: mongodb
@@ -19,7 +19,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: mongodb
-        image: "macharavikishore/mongodb::{{ .values.statefulset.imageVersion}}"
+        image: "macharavikishore/mongodb::{{ .values.statefulset.imageVersion }}"
          # or specify a pull policy according to your needs
         ports:
         - containerPort: 27017
